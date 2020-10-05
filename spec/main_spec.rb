@@ -43,11 +43,23 @@ describe 'Enumerables' do
 	    expect(result.class).to eq(Enumerator)
     end
 
-    it 'return array when given block ' do
+    it 'calls the block on a given array and returns it' do
       val = 0
       arr.my_each_with_index {|value , i|  val= value if (i==3)}
       expect(val).to eq(8)
-    end  
+    end
+
+    it 'should call the block on a hash and return it' do
+      val = ''
+      hash.my_each_with_index{|value, i| val = value if i == 2}
+      expect(val).to eq([:location, "mexico"])
+    end
+
+    it 'should call the block on a range and return it' do
+      val = 0
+      range.my_each_with_index{|value, i| val = value if i == 5}
+      expect(val).to eq(5)
+    end
   end
 
   describe '#my_all?' do
