@@ -85,7 +85,7 @@ describe 'Enumerables' do
   end
 
   describe '#my_any' do
-  it 'Should return true if all elements of an array pass a condition given in a block' do
+    it 'Should return true if all elements of an array pass a condition given in a block' do
       expect(arr.my_any? { |num| num > 2 }).to be true
     end
 
