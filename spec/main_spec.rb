@@ -127,4 +127,26 @@ describe 'Enumerables' do
       expect(hash.my_none? { |_key, val| val.is_a? String }).to be false
     end
   end
+
+  describe '#my_count' do
+    it 'If no block is given return the length of array' do
+      expect(arr.my_count).to eq(arr.length)
+    end
+
+    it 'will give number of times an specific input is in an array' do
+      expect(arr.my_count(9)).to eq(1)
+    end
+
+    it 'will count the elements that pass condition in a block' do
+      expect(arr.my_count { |x| x > 5 }).to eq(3)
+    end
+
+    it 'it will give hash length if block is not given' do
+      expect(hash.my_count).to eq(hash.length)
+    end
+
+    it 'will return the number of elements that pass the condition in the block' do
+      expect(range.my_count(x.even?)).to eq(4)
+    end
+  end
 end
