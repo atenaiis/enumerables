@@ -63,20 +63,24 @@ describe 'Enumerables' do
   end
 
   describe '#my_all?' do
-    it 'return true' do
-      expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
+    it 'Should return true if all elements of an array pass a condition given in a block' do
+      expect(arr.my_all?{|num| num > 2 }).to be true
     end
 
-    it 'return false' do
-      expect(%w[ant bear cat].my_all? { |word| word.length >= 4 }).to eql(false)
+    it 'Should return false if all elements of an array do not pass a condition given in a block' do
+      expect(arr.my_all? { |num| num > 100 }).to be false
     end
 
-    it 'return false' do
-      expect([1, 2i, 3.14].my_all?(Numeric)).to eql(true)
+    it 'Should return false if no block is given and there is one element of the array that is falsy' do
+      expect([1, nil, 3.14].my_all?).to be false
     end
 
-    it 'return false' do
-      expect([nil, true, 99].my_all?).to eql(false)
+    it 'Should return true if all elements of a range pass a condition given in a block' do
+      expect(range.all?(String)).to be false
+    end
+
+    it 'Should return true if all elements of a hash pass a condition given in a block' do
+      expect(hash.all?{|key, val| val.is_a? String}).to be true
     end
     
   end
