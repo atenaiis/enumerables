@@ -120,11 +120,11 @@ describe 'Enumerables' do
     end
 
     it 'Should return true if none of the elements of a range pass a condition given in a block' do
-      expect(range.none?(String)).to be true
+      expect(range.my_none?(String)).to be true
     end
 
     it 'Should return false if one or more elements of a hash pass a condition given in a block' do
-      expect(hash.none? { |_key, val| val.is_a? String }).to be false
+      expect(hash.my_none? { |_key, val| val.is_a? String }).to be false
     end
   end
 end
