@@ -85,23 +85,23 @@ describe 'Enumerables' do
   end
 
   describe '#my_any' do
-    it 'Should return true if all elements of an array pass a condition given in a block' do
+    it 'Should return true if one of the elements of an array pass a condition given in a block' do
       expect(arr.my_any? { |num| num > 2 }).to be true
     end
 
-    it 'Should return false if all elements of an array do not pass a condition given in a block' do
+    it 'Should return false if there is no single element of an array that pass a condition given in a block' do
       expect(arr.my_any? { |num| num > 100 }).to be false
     end
 
-    it 'Should return true if no block is given and there is one element of the array that is falsy' do
+    it 'Should return true if no block is given and there is one element of the array that is truthy' do
       expect([1, nil, 3.14].my_any?).to be true
     end
 
-    it 'Should return false if all elements of a range pass a condition given in a block' do
+    it 'Should return false if no one element of a range pass a condition given in a block' do
       expect(range.any?(String)).to be false
     end
 
-    it 'Should return true if all elements of a hash pass a condition given in a block' do
+    it 'Should return true if at least one element of a hash passes a condition given in a block' do
       expect(hash.any? { |_key, val| val.is_a? String }).to be true
     end
   end
