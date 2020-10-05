@@ -105,4 +105,26 @@ describe 'Enumerables' do
       expect(hash.any? { |_key, val| val.is_a? String }).to be true
     end
   end
+
+  describe 'my_none?' do
+    it 'Should return true if none of the elements of an array pass a condition given in a block' do
+      expect(arr.my_none? { |num| num < 2 }).to be true
+    end
+
+    it 'Should return false if one or more elements of an array pass a condition given in a block' do
+      expect(arr.my_none? { |num| num < 100 }).to be false
+    end
+
+    it 'Should return true if no block is given and there is none of the elements is truthy' do
+      expect([nil, false].my_none?).to be true
+    end
+
+    it 'Should return true if none of the elements of a range pass a condition given in a block' do
+      expect(range.none?(String)).to be true
+    end
+
+    it 'Should return false if one or more elements of a hash pass a condition given in a block' do
+      expect(hash.none? { |_key, val| val.is_a? String }).to be false
+    end
+  end
 end
