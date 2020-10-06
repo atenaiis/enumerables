@@ -205,4 +205,10 @@ describe 'Enumerables' do
       expect(range.my_select { |x| x < 3 }).to eq([0, 1, 2])
     end
   end
+
+  describe '#multiply_els' do
+    it 'Should multiply all elements of an array and return a single value' do
+      expect(multiply_els(arr)).to eq(8640)
+    end
+  end
 end
