@@ -146,7 +146,7 @@ describe 'Enumerables' do
     end
 
     it 'will return the number of elements that pass the condition in the block' do
-      expect(range.my_count { |x| x.even? }).to eq(4)
+      expect(range.my_count(&:even?)).to eq(4)
     end
   end
 
@@ -155,8 +155,18 @@ describe 'Enumerables' do
       expect(arr.my_map.class).to eq(Enumerator)
     end
 
-    it 'when block is given will initialize a new array ' do
+    it 'when block is given will yield on each element in the array' do
       expect(arr.my_map { |x| x * 2 }).to eq([10, 12, 18, 16, 8])
+    end
+
+    it 'if block is not given and argument is a proc it calls to run on each element in the array' do
+      my_proc = proc { |x| x * 2 }
+      expect(arr.my_map(my_proc)).to eq([10, 12, 18, 16, 8])
+    end
+
+    it 'if block is given and argument is given as Proc, call it on each element in the array' do
+      my_proc = proc { |x| x * 2 }
+      expect(arr.my_map(my_proc) { |x| x * 3 }).to eq([10, 12, 18, 16, 8])
     end
   end
 end
