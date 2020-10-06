@@ -146,7 +146,17 @@ describe 'Enumerables' do
     end
 
     it 'will return the number of elements that pass the condition in the block' do
-      expect(range.my_count(x.even?)).to eq(4)
+      expect(range.my_count { |x| x.even? }).to eq(4)
+    end
+  end
+
+  describe '#my_map' do
+    it 'will return enumerator if block is no given' do
+      expect(arr.my_map.class).to eq(Enumerator)
+    end
+
+    it 'when block is given will initialize a new array ' do
+      expect(arr.my_map { |x| x * 2 }).to eq([10, 12, 18, 16, 8])
     end
   end
 end
