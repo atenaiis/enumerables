@@ -187,4 +187,22 @@ describe 'Enumerables' do
       expect(arr.my_inject { |sum, x| sum + x }).to eq(arr.sum)
     end
   end
+
+  describe '#my_select' do
+    it 'Should return the enumerator if no block is given' do
+      expect(arr.my_select.class).to eq(Enumerator)
+    end
+
+    it 'Should return an array of elements that pass a condition provided in the block' do
+      expect(arr.my_select { |x| x > 5 }).to eq([6, 9, 8])
+    end
+
+    it 'Should be called on objects and execute a condition in a block' do
+      expect(hash.my_select { |_k, v| v == 'mexico' }).to eq([[:location, 'mexico']])
+    end
+
+    it 'Should be called on ranges and execute a condition in a block' do
+      expect(range.my_select { |x| x < 3 }).to eq([0, 1, 2])
+    end
+  end
 end
