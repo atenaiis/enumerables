@@ -169,4 +169,22 @@ describe 'Enumerables' do
       expect(arr.my_map(my_proc) { |x| x * 3 }).to eq([10, 12, 18, 16, 8])
     end
   end
+
+  describe '#my_inject' do
+    it 'if a symbol operator was given as an argument, it should call it on each array element and return one value' do
+      expect(arr.my_inject(:+)).to eq(arr.sum)
+    end
+
+    it 'Should return the value from calling the operator on each array element starting with the initial value' do
+      expect(arr.my_inject(45, :+)).to eq(arr.sum + 45)
+    end
+
+    it 'Should return one value from calling the block on each array element starting with the initial value' do
+      expect(arr.my_inject(45) { |sum, x| sum + x }).to eq(arr.sum + 45)
+    end
+
+    it 'Should return one value from calling the block on each element of the array' do
+      expect(arr.my_inject { |sum, x| sum + x }).to eq(arr.sum)
+    end
+  end
 end
